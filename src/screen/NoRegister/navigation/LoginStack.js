@@ -23,6 +23,11 @@ export function LoginStack(){
                 component={LoginScreenNR}
             />  
 
+            <Stack.Screen 
+                name= {screensNR.noRegister.login}
+                component={LoginScreenNR}
+            />  
+
         </Stack.Navigator>
 
 

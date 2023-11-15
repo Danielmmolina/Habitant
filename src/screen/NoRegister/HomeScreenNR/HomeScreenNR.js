@@ -17,10 +17,6 @@ export function HomeScreenNR() {
         return null;
     }
 
-
-
-
-
   return (
 
     <View style={styles.containerLogo}>

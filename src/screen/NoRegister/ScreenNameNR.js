@@ -1,7 +1,7 @@
 const NRStack = {
     login : 'login',
     register: 'register',
-    tab: 'RegisterTab',
+    tab: 'Registrarse',
     home: 'home',
 
 }
