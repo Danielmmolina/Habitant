@@ -1,12 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import { Text, View } from 'react-native';
-
+import { Text, View, SafeAreaView } from 'react-native';
+import { styles } from './styles';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { AppNavigationNR } from './src/screen/NoRegister/navigation/AppNavigationNR';
+//import { LoginScreenNR } from './src/screen/NoRegister/LoginScreen/LoginScreenNR';
 export default function App() {
+
+
+  const myTheme = {
+    ...DefaultTheme, 
+    colors: {
+      ...DefaultTheme.colors,
+      background: 'rgb(46, 48, 53)'
+    },
+  };
+
   return (
-    <View style={styles.container}>
-      <Text>Inicio de aplicación"Habitant" </Text>
-      <StatusBar style="auto" />
-    </View>
+    
+    <SafeAreaView style={styles.containerDark}> 
+
+      <NavigationContainer theme={myTheme} > 
+
+        <AppNavigationNR />
+
+       
+      </NavigationContainer>
+
+    </SafeAreaView>
+
   );
 }
 
