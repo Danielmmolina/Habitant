@@ -35,7 +35,6 @@ export const stylesLoginScreen = StyleSheet.create({
         marginTop: '20%',
         justifyContent: "center",
         alignItems: "center",
-
     },
 
     btn:{
@@ -57,8 +56,9 @@ export const stylesLoginScreen = StyleSheet.create({
     textBtn: {
         color: 'rgb(255, 255, 255)',
         fontSize: 14,
-        
-    }
+    },
+
+   
 
 
 

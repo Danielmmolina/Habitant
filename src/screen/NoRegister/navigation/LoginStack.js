@@ -2,7 +2,10 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { screensNR } from "../ScreenNameNR"
 import { LoginScreenNR } from "../LoginScreen/LoginScreenNR";
 import { OptionsLogin } from "../OptionsLogin/OptionsLoginNR"
-import { styles } from "../../../../styles";
+import { newAccountScreen } from "../newAccount.js/newAccountScreen";
+import { FormArrendadorScreen } from "../Forms/FormArrendadorScreen";
+import { FormStudentScreen } from "../Forms/FormStudentScreen";
+import { AppNavigationS } from '../../Student/navigation/AppNavigationS'
 
 const Stack = createNativeStackNavigator();
 
@@ -24,9 +27,31 @@ export function LoginStack(){
             />  
 
             <Stack.Screen 
-                name= {screensNR.noRegister.login}
-                component={LoginScreenNR}
-            />  
+                name= {screensNR.noRegister.register}
+                component={newAccountScreen}
+            />
+
+            <Stack.Screen 
+                name = {screensNR.noRegister.formA}
+                component={FormArrendadorScreen}
+            />
+
+            <Stack.Screen 
+                name = {screensNR.noRegister.formE}
+                component={FormStudentScreen}
+            />
+
+            <Stack.Screen 
+                name = {screensNR.noRegister.student}
+                component={AppNavigationS}
+            />
+
+
+
+
+
+
+            
 
         </Stack.Navigator>
 

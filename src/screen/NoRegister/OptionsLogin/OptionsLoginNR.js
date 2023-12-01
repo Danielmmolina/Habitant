@@ -15,6 +15,10 @@ export function OptionsLogin(props) {
         navigation.navigate(screensNR.noRegister.login);
     }
 
+    const goToRegister = () => {
+        navigation.navigate(screensNR.noRegister.register);
+    }
+
     const [fontsLoaded] = useFonts({
         Lobster_400Regular,
         Montserrat_400Regular,
@@ -43,7 +47,7 @@ export function OptionsLogin(props) {
         </View>
 
         <View>
-            <Button containerStyle= {stylesLoginScreen.containerBtn} buttonStyle={stylesLoginScreen.btn}> <Text style= {{ ...stylesLoginScreen.textBtn, fontFamily: 'Montserrat_700Bold'}}>REGISTRARSE</Text></Button>
+            <Button containerStyle= {stylesLoginScreen.containerBtn} buttonStyle={stylesLoginScreen.btn} onPress={goToRegister}> <Text style= {{ ...stylesLoginScreen.textBtn, fontFamily: 'Montserrat_700Bold'}}>REGISTRARSE</Text></Button>
         </View>
  
  

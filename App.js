@@ -1,8 +1,11 @@
-import { Text, View, SafeAreaView } from 'react-native';
+import { SafeAreaView, LogBox, StatusBar } from 'react-native';
 import { styles } from './styles';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
-import { AppNavigationNR } from './src/screen/NoRegister/navigation/AppNavigationNR';
-//import { LoginScreenNR } from './src/screen/NoRegister/LoginScreen/LoginScreenNR';
+import { initFirebase } from './src/utils/firebase.js';
+import { AppNavigation } from './src/screen/AppNavigation/AppNavigation.js';
+import Toast from 'react-native-toast-message';
+
+LogBox.ignoreAllLogs();
 export default function App() {
 
 
@@ -15,18 +18,18 @@ export default function App() {
   };
 
   return (
-    
-    <SafeAreaView style={styles.containerDark}> 
 
-      <NavigationContainer theme={myTheme} > 
+    <> 
+      <StatusBar backgroundColor="transparent" translucent={true} />
+        <SafeAreaView style={{...styles.containerDark, paddingTop: StatusBar.currentHeight}}> 
+          <NavigationContainer theme={myTheme} > 
+            <AppNavigation />
+         </NavigationContainer>
 
-        <AppNavigationNR />
-
-       
-      </NavigationContainer>
-
-    </SafeAreaView>
-
+         <Toast />
+         
+       </SafeAreaView>
+    </>
   );
 }
 

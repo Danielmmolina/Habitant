@@ -7,7 +7,7 @@ import { ProfileScreen } from '../ProfileScreenS/ProfileScreenS';
 import { styles } from '../../../../styles';
 import { Icon } from '@rneui/base';
 
-export function AppNavigation() {
+export function AppNavigationS() {
 
   const Tab = createBottomTabNavigator();
 

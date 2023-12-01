@@ -18,6 +18,8 @@ if (!fontsLoaded) {
     return null;
 }
 
+
+
   return (
     <> 
       <View style={styles.containerLogo}> 
