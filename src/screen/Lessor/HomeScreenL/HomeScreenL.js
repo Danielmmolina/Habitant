@@ -7,7 +7,7 @@ import { Image } from '@rneui/base'
 import { useFonts, Lobster_400Regular } from "@expo-google-fonts/lobster";
 import { Montserrat_400Regular  } from '@expo-google-fonts/montserrat'
 
-export function HomeScreen() {
+export function HomeScreenL() {
 
   const [fontsLoaded] = useFonts({
     Lobster_400Regular,

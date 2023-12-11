@@ -44,7 +44,7 @@ function screenOptions(route, color, size){
   }
 
   if(route.name=== 'Añadir publicación'){
-      iconName='magnify';
+      iconName='User Profile';
   }
 
   if(route.name === 'Interesados'){

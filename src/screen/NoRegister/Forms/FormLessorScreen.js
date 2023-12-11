@@ -41,7 +41,7 @@ export  function FormLessorScreen(props) {
                     apellidos: formValue.apellidos,
                     rut: formValue.rut,
                     telefono: formValue.telefono,
-                    role: 'Arrendador',
+                    rol: 'Arrendador',
                 });
 
                 console.log("Exito");

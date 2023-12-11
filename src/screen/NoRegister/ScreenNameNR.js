@@ -5,8 +5,10 @@ const NRStack = {
     home: 'home',
     formA: 'Formulario Arrendador',
     formE: 'Formulario Estudiante',
-    student: 'Navegacion a perfil usuario'
+    student: 'Navegacion a perfil usuario',
+    lessor: 'Navegacion a perfil arrendador'
 }
+
 
 export const screensNR = {
     noRegister: NRStack 
