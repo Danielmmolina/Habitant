@@ -41,7 +41,7 @@ export  function FormStudentScreen(props) {
                     apellidos: formValue.apellidos,
                     rut: formValue.rut,
                     telefono: formValue.telefono,
-                    rol: 'Estudiante',
+                    role: 'Estudiante',
                 });
 
                 console.log("Exito");

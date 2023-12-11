@@ -3,7 +3,7 @@ import { screensNR } from "../ScreenNameNR"
 import { LoginScreenNR } from "../LoginScreen/LoginScreenNR";
 import { OptionsLogin } from "../OptionsLogin/OptionsLoginNR"
 import { newAccountScreen } from "../newAccount.js/newAccountScreen";
-import { FormArrendadorScreen } from "../Forms/FormArrendadorScreen";
+import { FormLessorScreen } from "../Forms/FormLessorScreen";
 import { FormStudentScreen } from "../Forms/FormStudentScreen";
 import { AppNavigationS } from '../../Student/navigation/AppNavigationS'
 
@@ -33,7 +33,7 @@ export function LoginStack(){
 
             <Stack.Screen 
                 name = {screensNR.noRegister.formA}
-                component={FormArrendadorScreen}
+                component={FormLessorScreen}
             />
 
             <Stack.Screen 
