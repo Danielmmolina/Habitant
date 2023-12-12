@@ -45,14 +45,7 @@ export function LoginStack(){
                 name = {screensNR.noRegister.student}
                 component={AppNavigationS}
             />
-
-
-
-
-
-
             
-
         </Stack.Navigator>
 
 

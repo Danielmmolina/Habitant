@@ -41,7 +41,7 @@ export function LoginScreenNR(props) {
             } catch (error) {
                 Toast.show({
                     type: "error",
-                    position: 'bottom',
+                    position: 'bottom', 
                     text1: 'Datos ingresados incorrectos',
                 });
             }

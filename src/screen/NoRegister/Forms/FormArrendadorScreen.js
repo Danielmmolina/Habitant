@@ -8,7 +8,7 @@ import { Input, Button, Icon } from '@rneui/base';
 import { screensNR } from '../ScreenNameNR'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { useFormik } from 'formik'
-import { initialValues, validationSchema_Arrendador } from './RegisterFormData'
+import { initialValues, validationSchema_User } from './RegisterFormData'
 
 export  function FormArrendadorScreen(props) {
 
@@ -19,7 +19,7 @@ export  function FormArrendadorScreen(props) {
 
     const formik = useFormik({
         initialValues: initialValues(),
-        validationSchema: validationSchema_Arrendador(),
+        validationSchema: validationSchema_User(),
         validateOnChange: false,
         onSubmit: (formValue) => {
             console.log("Formulario enviado");
