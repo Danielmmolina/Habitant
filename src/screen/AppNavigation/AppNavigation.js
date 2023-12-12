@@ -1,32 +1,3 @@
-/*import React, { useState, useEffect} from "react";
-import { View, Text } from "react-native";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { AppNavigationNR } from "../NoRegister/navigation/AppNavigationNR";
-import { AppNavigationS } from "../Student/navigation/AppNavigationS";
-import { AppNavigationL } from "../Lessor/navigation/AppNavigationL"; // Importo la navegación de "Arrendador"
-
-export function AppNavigation() {
-  const [userType, setUserType] = useState(null);
-
-  useEffect(() => {
-    const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
-      setUserType(user ? user.type : null); // Supongamos que tienes un campo "type" en el objeto de usuario
-    });
-  }, []);
-
-  const renderNavigationByType = () => {
-    if (userType === "Estudiante") {
-      return <AppNavigationS />;
-    } else if (userType === "Arrendador") {
-      return <AppNavigationL />;
-    } else {
-      return <AppNavigationNR />;
-    }
-  };
-
-  return renderNavigationByType();
-}*/
 import React, { useState, useEffect} from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { db } from "../../utils/firebase";
@@ -50,16 +21,17 @@ export function AppNavigation() {
 
                 // Accede al rol del usuario
                 const role = userData?.rol;
-
+                console.log(role);
                 // Establece el rol del usuario en el estado
                 setUserRole(role);
-                console.log('El usuario es: '+ userRole);
             } else {
                 // Si no hay usuario autenticado, establece el rol en null
                 setUserRole(null);
             }
         });
+        
     }, []);
+
 
 /*
     useEffect(() => {

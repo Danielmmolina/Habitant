@@ -11,17 +11,21 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { db } from '../../../utils/firebase'
 import { FontAwesome5, Entypo, FontAwesome, MaterialCommunityIcons  } from '@expo/vector-icons'
 import * as ImagePicker from 'expo-image-picker'
+import { LoadingModal } from '../../../components/Shared/LoadingModal/LoadingModal'
 
 export function ProfileScreen() {
 
   const { uid, photoURL, email} = getAuth().currentUser;
   const [infoUser, setInfoUser] = useState('');
   const [avatar, setAvatar] = useState(photoURL)
+  const [show, setShow] = useState(true)
+  const [showLoadingAvatar, setShowLoadingAvatar] = useState(false);
 
   useEffect(() => {
     setInfoUser('');
     onSnapshot(doc(db, 'infoUsers', uid), (doc) => {
       setInfoUser(doc.data());
+      setShow(false);
     });
   }, [uid]);
 
@@ -60,16 +64,18 @@ const uploadImage = async (uri) =>{
 };
 
 const updatePhotoUrl = async (imagePath) => {
+
+  setShowLoadingAvatar(true);
+
   const storage = getStorage();
   const imageRef = ref(storage, imagePath);
-
   const imageUrl = await getDownloadURL(imageRef);
-
   const auth = getAuth();
   updateProfile(auth.currentUser, { photoURL: imageUrl});
-
   setAvatar(imageUrl);
 
+  setShowLoadingAvatar(false);
+  
 
 
 }
@@ -80,73 +86,83 @@ const logout = async () => {
 }
 
 
-  return (
-    
-    <>
-
-        <View style={styles.containerLogo}> 
-          <Image source={require('../../../../assets/LogoHabitant.png')} style={styles.logoImg} />
-          <Text style={{ ...styles.logoText, fontFamily: 'Lobster_400Regular'}}> Habitant </Text>     
-        </View>
-
-      <ScrollView> 
-        <Text style={{ ...stylesProfileScreen.textTitle, fontFamily: 'Montserrat_700Bold'}}> Mi perfil</Text>
-
-        <View style={stylesProfileScreen.containerAvatar}> 
-
-          <Avatar 
-            size= {150}
-            rounded
-            icon={{ type: 'material', name: 'person'}}
-            containerStyle={stylesProfileScreen.avatar}
-            source={{ uri: avatar }}
-            
-          >
-            <Avatar.Accessory size={40} onPress={changeAvatar} />
-          </Avatar>
-      
-        </View>
-
-
-        <View> 
-          <Text style={{ ...stylesProfileScreen.textNombre, fontFamily: 'Montserrat_700Bold'}}>{infoUser.nombres} {infoUser.apellidos}</Text>
-          <Text style={{...stylesProfileScreen.textRol, fontFamily: 'Montserrat_500Medium' }}> {infoUser.rol} </Text>
-        </View>
-
-
-      <View style={stylesProfileScreen.containerAllInfo}> 
-        <View style={stylesProfileScreen.containerInfoUser}>
-          <FontAwesome5 name="university" size={24} color='rgb(255, 255, 255)' />
-          <Text style={{...stylesProfileScreen.textInfo, fontFamily: 'Montserrat_400Regular'}}> Universidad del Bío-Bío </Text>
-        </View> 
-          
-        <View style={stylesProfileScreen.containerInfoUser}>  
-        <Entypo name="mail" size={24} color="rgb(255, 255, 255)" />
-          <Text style={{...stylesProfileScreen.textInfo, fontFamily: 'Montserrat_400Regular'}}> {email} </Text>
-        </View>
-
-        <View style={stylesProfileScreen.containerInfoUser}>
-          <FontAwesome name="phone" size={24} color="rgb(255, 255, 255)" />
-          <Text style={{...stylesProfileScreen.textInfo, fontFamily: 'Montserrat_400Regular'}}> +56 {infoUser.telefono} </Text>
-        </View>
-
-
-        <TouchableOpacity style={stylesProfileScreen.containerLogout} onPress={logout}> 
-
-          <Text style={{ ...stylesProfileScreen.textLogout, fontFamily: 'Montserrat_400Regular'}}> Cerrar sesión </Text>
-          <MaterialCommunityIcons name="logout" size={30} color="rgb(255, 255, 255)" />
-
-        </TouchableOpacity>
-          
-
-
-
-
+  if(!show) {
+    return (
+      <>
+        
+      <View style={styles.containerLogo}> 
+        <Image source={require('../../../../assets/LogoHabitant.png')} style={styles.logoImg} />
+        <Text style={{ ...styles.logoText, fontFamily: 'Lobster_400Regular'}}> Habitant </Text>     
       </View>
 
-      </ScrollView>
-    </>
+    <ScrollView> 
+      <Text style={{ ...stylesProfileScreen.textTitle, fontFamily: 'Montserrat_700Bold'}}> Mi perfil</Text>
 
-   
+      <View style={stylesProfileScreen.containerAvatar}> 
+
+        <Avatar 
+          size= {150}
+          rounded
+          icon={{ type: 'material', name: 'person'}}
+          containerStyle={stylesProfileScreen.avatar}
+          source={{ uri: avatar }}
+          
+        >
+          <Avatar.Accessory size={40} onPress={changeAvatar} />
+        </Avatar>
+    
+      </View>
+
+      <LoadingModal show={showLoadingAvatar} text='Cambiando foto de perfil'/>
+
+      <View> 
+        <Text style={{ ...stylesProfileScreen.textNombre, fontFamily: 'Montserrat_700Bold'}}>{infoUser.nombres} {infoUser.apellidos}</Text>
+        <Text style={{...stylesProfileScreen.textRol, fontFamily: 'Montserrat_500Medium' }}> {infoUser.rol} </Text>
+      </View>
+
+
+    <View style={stylesProfileScreen.containerAllInfo}> 
+      <View style={stylesProfileScreen.containerInfoUser}>
+        <FontAwesome5 name="university" size={24} color='rgb(255, 255, 255)' />
+        <Text style={{...stylesProfileScreen.textInfo, fontFamily: 'Montserrat_400Regular'}}> Universidad del Bío-Bío </Text>
+      </View> 
+        
+      <View style={stylesProfileScreen.containerInfoUser}>  
+      <Entypo name="mail" size={24} color="rgb(255, 255, 255)" />
+        <Text style={{...stylesProfileScreen.textInfo, fontFamily: 'Montserrat_400Regular'}}> {email} </Text>
+      </View>
+
+      <View style={stylesProfileScreen.containerInfoUser}>
+        <FontAwesome name="phone" size={24} color="rgb(255, 255, 255)" />
+        <Text style={{...stylesProfileScreen.textInfo, fontFamily: 'Montserrat_400Regular'}}> +56 {infoUser.telefono} </Text>
+      </View>
+
+
+      <TouchableOpacity style={stylesProfileScreen.containerLogout} onPress={logout}> 
+
+        <Text style={{ ...stylesProfileScreen.textLogout, fontFamily: 'Montserrat_400Regular'}}> Cerrar sesión </Text>
+        <MaterialCommunityIcons name="logout" size={30} color="rgb(255, 255, 255)" />
+
+      </TouchableOpacity>
+
+      <LoadingModal show= {show}/>
+        
+
+
+
+
+    </View>
+
+    </ScrollView>
+  </>
+    )
+  }
+
+  else
+    return (
+      <LoadingModal show= {show} text='Cargando'/>
+  
   )
+
+  
 }

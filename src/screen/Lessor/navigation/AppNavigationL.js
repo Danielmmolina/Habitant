@@ -36,31 +36,29 @@ export function AppNavigationL() {
   )
 }
 
-function screenOptions(route, color, size){
+function screenOptions(route, color, size) {
   let iconName;
 
-  if(route.name === 'Inicio'){
-      iconName='home';
+  if (route.name === 'Inicio') {
+    iconName = 'home';
   }
 
-  if(route.name=== 'Añadir publicación'){
-      iconName='User Profile';
+  if (route.name === 'Nueva publicación') {  
+    iconName = 'plus-box';
   }
 
-  if(route.name === 'Interesados'){
-      iconName = 'heart';
+  if (route.name === 'Interesados') {
+    iconName = 'book-reader';
   }
 
-  if(route.name === 'Mi perfil'){
-      iconName = 'account-circle';
+  if (route.name === 'Mi perfil') {
+    iconName = 'account-circle';
   }
 
   return (
-
-      <Icon type='material-community' 
+    <Icon type='material-community' 
       name={iconName} 
       color={color} 
       size={size} />
-      
   );
 }
