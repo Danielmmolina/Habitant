@@ -9,8 +9,11 @@ import { screensNR } from '../ScreenNameNR'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { useFormik } from 'formik'
 import { initialValues, validationSchema_User } from './RegisterFormData'
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
+import { doc, setDoc } from 'firebase/firestore'
+import { db } from '../../../utils/firebase'
 
-export  function FormArrendadorScreen(props) {
+export  function FormLessorScreen(props) {
 
     const [showPassword, setShowPassword] = useState(false);
 
@@ -21,9 +24,34 @@ export  function FormArrendadorScreen(props) {
         initialValues: initialValues(),
         validationSchema: validationSchema_User(),
         validateOnChange: false,
-        onSubmit: (formValue) => {
-            console.log("Formulario enviado");
-            console.log(formValue);
+        onSubmit: async (formValue) => {
+            try {
+                const auth = getAuth();
+                const usuario = await createUserWithEmailAndPassword(
+                    auth,
+                    formValue.email,
+                    formValue.password
+                );
+
+                const uid = usuario.user.uid;
+
+                const myDb = doc(db, 'infoUsers', uid);
+                await setDoc(myDb, {
+                    nombres: formValue.nombres,
+                    apellidos: formValue.apellidos,
+                    rut: formValue.rut,
+                    telefono: formValue.telefono,
+                    rol: 'Arrendador',
+                });
+
+                console.log("Exito");
+
+               
+                
+            } catch (error) {
+                console.log(error);   
+            }
+            
         },
     })
 

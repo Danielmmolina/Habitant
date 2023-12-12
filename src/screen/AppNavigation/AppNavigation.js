@@ -3,11 +3,13 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { db } from "../../utils/firebase";
 import { AppNavigationNR } from "../NoRegister/navigation/AppNavigationNR";
 import { AppNavigationS } from "../Student/navigation/AppNavigationS";
-import { AppNavigationA } from "../Arrendador/navigation/AppNavigationA";
+import { AppNavigationL } from "../Lessor/navigation/AppNavigationL"; // Importo la navegación de "Arrendador"
 import { doc, getDoc } from "firebase/firestore";
+import { LoadingModal } from "../../components/Shared/LoadingModal/LoadingModal";
 
 export function AppNavigation() {
     const [userRole, setUserRole] = useState(null);
+    const [show, setShow] = useState(true);
 
     useEffect(() => {
         const auth = getAuth();
@@ -15,28 +17,31 @@ export function AppNavigation() {
             if (user) {
                 const uid = user.uid;
                 const userDoc = await getDoc(doc(db, 'infoUsers', uid));
-                
-                const userData = userDoc.data();
-
-
-               
+                const userData = userDoc.data();     
                 const role = userData?.rol;
-
-                
+                console.log(role);
                 setUserRole(role);
-                console.log('El usuario es: '+ userRole);
             } else {
-               
                 setUserRole(null);
             }
+            console.log("El estado es: "+ show);
+            setShow(false);
         });
+        
+       
+        
     }, []);
+
+    if(show){
+        return <LoadingModal show={show} text='Iniciando sesión'/>
+    }
+
 
 
     if (userRole === 'Estudiante') {
         return <AppNavigationS />;
     } else if (userRole === 'Arrendador') {
-        return <AppNavigationA />;
+        return <AppNavigationL />;
     } else {
         return <AppNavigationNR />;
     }
