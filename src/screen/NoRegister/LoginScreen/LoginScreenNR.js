@@ -15,28 +15,35 @@ import { initialValuesLogin, validationSchema_Login  } from '../Forms/RegisterFo
 import Toast from 'react-native-toast-message';
 
 
+
+
 export function LoginScreenNR(props) {
 
 
     const [showPassword, setShowPassword] = useState(false);
+   
+   
 
     const showHiddenPassword = () => setShowPassword( (prevState) => !prevState)
 
     const { navigation } = props;
 
     const formik = useFormik({
+        
         initialValues: initialValuesLogin(),
         validationSchema: validationSchema_Login(),
         validateOnChange: false,
         onSubmit: async (formValue) => {
             try {
+               
                 const auth = getAuth();
                 await signInWithEmailAndPassword(
                     auth,
                     formValue.email,
                     formValue.password
                 );
-            navigation.navigate(screensNR.noRegister.student);
+                
+           
 
             } catch (error) {
                 Toast.show({
@@ -45,7 +52,9 @@ export function LoginScreenNR(props) {
                     text1: 'Datos ingresados incorrectos',
                 });
             }
+            
         }
+        
 
     })
 
@@ -86,9 +95,11 @@ export function LoginScreenNR(props) {
         return null;
     }
 
-  return (
+  return (  
 
     <KeyboardAwareScrollView> 
+
+
         <TouchableOpacity style={styles.con} onPress={goToBack}>
              <Ionicons name="arrow-back" size={35} style={styles.iconBack} />
         </TouchableOpacity>
@@ -143,6 +154,8 @@ export function LoginScreenNR(props) {
         </View>
 
         <Button containerStyle= {stylesLoginScreenNR.containerBtn} buttonStyle={stylesLoginScreenNR.btn} onPress={formik.handleSubmit} loading={formik.isSubmitting}> <Text style= {{ ...stylesLoginScreenNR.textBtn, fontFamily: 'Montserrat_600SemiBold'}}>Iniciar sesión</Text></Button>
+        
+        
 
         <Text style={{ ...stylesLoginScreenNR.text1, fontFamily: 'Montserrat_400Regular'}} onPress={goToCambioContraseña}>¿Has olvidado tu contraseña?</Text>
 

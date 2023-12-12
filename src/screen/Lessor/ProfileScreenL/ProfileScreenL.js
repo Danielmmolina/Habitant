@@ -11,17 +11,21 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { db } from '../../../utils/firebase'
 import { FontAwesome5, Entypo, FontAwesome, MaterialCommunityIcons  } from '@expo/vector-icons'
 import * as ImagePicker from 'expo-image-picker'
+import { LoadingModal } from '../../../components/Shared/LoadingModal/LoadingModal'
 
 export function ProfileScreen() {
 
   const { uid, photoURL, email} = getAuth().currentUser;
   const [infoUser, setInfoUser] = useState('');
-  const [avatar, setAvatar] = useState(photoURL)
+  const [avatar, setAvatar] = useState(photoURL);
+  const [show, setShow] = useState(true)
+  const [showLoadingAvatar, setShowLoadingAvatar] = useState(false);
 
   useEffect(() => {
     setInfoUser('');
     onSnapshot(doc(db, 'infoUsers', uid), (doc) => {
       setInfoUser(doc.data());
+      setShow(false);
     });
   }, [uid]);
 
@@ -60,6 +64,8 @@ const uploadImage = async (uri) =>{
 };
 
 const updatePhotoUrl = async (imagePath) => {
+
+  setShowLoadingAvatar(true);
   const storage = getStorage();
   const imageRef = ref(storage, imagePath);
 
@@ -70,6 +76,8 @@ const updatePhotoUrl = async (imagePath) => {
 
   setAvatar(imageUrl);
 
+  setShowLoadingAvatar(false);
+
 
 
 }
@@ -79,7 +87,7 @@ const logout = async () => {
   await signOut(auth);
 }
 
-
+if(!show){
   return (
     
     <>
@@ -107,6 +115,8 @@ const logout = async () => {
       
         </View>
 
+        <LoadingModal show={showLoadingAvatar} text='Cambiando foto de perfil'/>
+
 
         <View> 
           <Text style={{ ...stylesProfileScreen.textNombre, fontFamily: 'Montserrat_700Bold'}}>{infoUser.nombres} {infoUser.apellidos}</Text>
@@ -115,10 +125,10 @@ const logout = async () => {
 
 
       <View style={stylesProfileScreen.containerAllInfo}> 
-        <View style={stylesProfileScreen.containerInfoUser}>
+        {/* <View style={stylesProfileScreen.containerInfoUser}>
           <FontAwesome5 name="university" size={24} color='rgb(255, 255, 255)' />
           <Text style={{...stylesProfileScreen.textInfo, fontFamily: 'Montserrat_400Regular'}}> Universidad del Bío-Bío </Text>
-        </View> 
+        </View>  */}
           
         <View style={stylesProfileScreen.containerInfoUser}>  
         <Entypo name="mail" size={24} color="rgb(255, 255, 255)" />
@@ -149,4 +159,13 @@ const logout = async () => {
 
    
   )
+
+}
+
+else
+return (
+  <LoadingModal show= {show} text='Cargando'/>
+
+)
+  
 }

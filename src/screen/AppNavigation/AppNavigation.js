@@ -19,30 +19,30 @@ export function AppNavigation() {
                 const userDoc = await getDoc(doc(db, 'infoUsers', uid));
                 const userData = userDoc.data();     
                 const role = userData?.rol;
-                console.log(role);
                 setUserRole(role);
             } else {
                 setUserRole(null);
-            }
-            console.log("El estado es: "+ show);
+            }          
             setShow(false);
         });
         
-       
-        
+
     }, []);
 
     if(show){
         return <LoadingModal show={show} text='Iniciando sesión'/>
     }
 
-
-
-    if (userRole === 'Estudiante') {
+    if (userRole === 'Estudiante') {    
+    
         return <AppNavigationS />;
-    } else if (userRole === 'Arrendador') {
+    }  if (userRole === 'Arrendador') {
+        
         return <AppNavigationL />;
-    } else {
+    } 
+
+        else {
+        
         return <AppNavigationNR />;
     }
 }

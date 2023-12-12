@@ -48,7 +48,7 @@ function screenOptions(route, color, size) {
   }
 
   if (route.name === 'Interesados') {
-    iconName = 'book-reader';
+    iconName = 'book-open-page-variant';
   }
 
   if (route.name === 'Mi perfil') {
