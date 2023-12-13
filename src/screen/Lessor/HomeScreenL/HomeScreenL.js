@@ -29,8 +29,7 @@ if (!fontsLoaded) {
         
        </View>
 
-       <Text style={{ ...stylesHomeScreen.textTitle, fontFamily: 'Montserrat_400Regular'}}> Publicaciones recomendadas </Text>
-
+       <Text style={{ ...stylesHomeScreen.textTitle, fontFamily: 'Montserrat_400Regular'}}> Mis publicaciones </Text>
      </>
    
   )

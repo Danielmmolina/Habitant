@@ -5,9 +5,11 @@ import { AppNavigationNR } from "../NoRegister/navigation/AppNavigationNR";
 import { AppNavigationS } from "../Student/navigation/AppNavigationS";
 import { AppNavigationL } from "../Lessor/navigation/AppNavigationL"; // Importo la navegación de "Arrendador"
 import { doc, getDoc } from "firebase/firestore";
+import { LoadingModal } from "../../components/Shared/LoadingModal/LoadingModal";
 
 export function AppNavigation() {
     const [userRole, setUserRole] = useState(null);
+    const [show, setShow] = useState(true);
 
     useEffect(() => {
         const auth = getAuth();
@@ -15,40 +17,32 @@ export function AppNavigation() {
             if (user) {
                 const uid = user.uid;
                 const userDoc = await getDoc(doc(db, 'infoUsers', uid));
-
-                const userData = userDoc.data();
-
-
-                // Accede al rol del usuario
+                const userData = userDoc.data();     
                 const role = userData?.rol;
-                console.log(role);
-                // Establece el rol del usuario en el estado
                 setUserRole(role);
             } else {
-                // Si no hay usuario autenticado, establece el rol en null
                 setUserRole(null);
-            }
+            }          
+            setShow(false);
         });
         
+
     }, []);
 
+    if(show){
+        return <LoadingModal show={show} text='Iniciando sesión'/>
+    }
 
-/*
-    useEffect(() => {
-        setInfoUser('');
-        onSnapshot(doc(db, 'infoUsers', uid), (doc) => {
-          setInfoUser(doc.data());
-          setShow(false);
-        });
-      }, [uid]);
-*/
-    // Renderiza la navegación basándose en el rol del usuario
-    if (userRole === 'Estudiante') {
+    if (userRole === 'Estudiante') {    
+    
         return <AppNavigationS />;
-    } else if (userRole === 'Arrendador') {
+    }  if (userRole === 'Arrendador') {
+        
         return <AppNavigationL />;
-    } else {
-        // Si no hay usuario autenticado o el rol no está definido, muestra la navegación para no registrados
+    } 
+
+        else {
+        
         return <AppNavigationNR />;
     }
 }

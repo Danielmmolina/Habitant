@@ -8,7 +8,7 @@ import { Input, Button, Icon } from '@rneui/base';
 import { screensNR } from '../ScreenNameNR'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { useFormik } from 'formik'
-import { initialValues, validationSchema_Student } from './RegisterFormData'
+import { initialValues, validationSchema_User } from './RegisterFormData'
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
 import { doc, setDoc } from 'firebase/firestore'
 import { db } from '../../../utils/firebase'
@@ -22,7 +22,7 @@ export  function FormStudentScreen(props) {
 
     const formik = useFormik({
         initialValues: initialValues(),
-        validationSchema: validationSchema_Student(),
+        validationSchema: validationSchema_User(),
         validateOnChange: false,
         onSubmit: async (formValue) => {
             try {
@@ -45,7 +45,6 @@ export  function FormStudentScreen(props) {
                 });
 
                 console.log("Exito");
-
                
                 
             } catch (error) {
@@ -68,10 +67,6 @@ export  function FormStudentScreen(props) {
 
     const goToBack = () =>{                                                                                                                                    
         navigation.navigate(screensNR.noRegister.register);
-    }
-
-    const goToHomeStudent = () => {
-        console.log("Ir a la screen de estudiante");
     }
 
     const showHiddenPassword = () => setShowPassword( (prevState) => !prevState)
@@ -116,7 +111,7 @@ export  function FormStudentScreen(props) {
             />
 
             <Input 
-                placeholder='Correo institucional' 
+                placeholder='Correo electrónico' 
                 inputStyle={{color: 'rgb(255, 255, 255)', fontFamily: 'Montserrat_400Regular'}} 
                 containerStyle={stylesForm.ContainerInput1} 
                 inputContainerStyle={stylesForm.input}

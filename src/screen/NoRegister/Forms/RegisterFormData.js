@@ -35,7 +35,7 @@ export function validationSchema_User () {
 
 export function validationSchema_Login() {
     return Yup.object({
-
+         
         email: Yup.string().email('Email ingresado no válido').required('Email no ingresado'),
 
           password: Yup.string().required("Contraseña no ingresada"),

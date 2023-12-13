@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-//Crear estilos relacionados solo con la página de login 
+
 
 export const stylesProfileScreen = StyleSheet.create({
 
@@ -42,11 +42,13 @@ export const stylesProfileScreen = StyleSheet.create({
         marginTop: '5%',
         marginLeft: '5%',
         alignItems: "center",
+
     },
 
     textInfo:{
         color: 'rgb(255, 255, 255)',
         fontSize: 16,
+        
     },
 
     containerLogout:{
