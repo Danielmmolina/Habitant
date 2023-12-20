@@ -17,7 +17,9 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 
 # Activa NVM para que se pueda utilizar en este script (Ejecutar una por una)
 . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION}
+
 . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION}
+
 . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
 
 # Descarga y configura la clave GPG de Yarn
