@@ -1,5 +1,7 @@
 # Habitant
+
 Proyecto de taller de desarrollo.
+
 ###################### EN CASO DE EJECUTAR EN UBUNTU 22.04 ######################
 # Actualiza la lista de paquetes en el sistema
 sudo apt update
