@@ -7658,6 +7658,11 @@ react-native-toast-message@^2.1.7:
   resolved "https://registry.yarnpkg.com/react-native-toast-message/-/react-native-toast-message-2.1.7.tgz#480ead6ea23e884f50ba467c818337d6830341e5"
   integrity sha512-5zX3T5buVpg4bn9KZYVZ2VUQiLQZ1FHSM2AFQHVpgeKMYb+Gq+jt7wjhfPqhuMkJElQr7XNrnRw/rBCdD+7Q9w==
 
+react-native-tunnel@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-tunnel/-/react-native-tunnel-0.1.0.tgz#91d4a2263a3c0e64224d4792ab60c3a6922c5322"
+  integrity sha512-ioYyWxbooAZKjIl3Aa9Uzr9uhuUYXCAh1rQeq8fri3FoWQg5nJA9LclnGIP5yPZ5BFa4a3o3SBVxk2SOxKgJ2g==
+
 react-native-web@~0.19.6:
   version "0.19.9"
   resolved "https://registry.npmjs.org/react-native-web/-/react-native-web-0.19.9.tgz"
