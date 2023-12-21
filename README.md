@@ -65,5 +65,7 @@ yarn global add pm2
 ### Para ejecutarlo, debemos estar en el directorio donde se encuentra nuestro archivo de ejecucion, en nuestro caso el App.js y ejecutar los comandos uno por uno
 
 pm2 start App.js
+
 pm2 startup
+
 pm2 save
