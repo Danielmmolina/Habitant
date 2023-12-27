@@ -8,7 +8,7 @@ export const stylesNewPublicationScreen = StyleSheet.create({
     marginTop: '10%',
   },
   formContainer: {
-    backgroundColor: '#2E3035', // Cambiado el color a 2E3035
+    backgroundColor: '#2E3035', 
     padding: 20,
     margin: 10,
     borderRadius: 10,
@@ -21,7 +21,7 @@ export const stylesNewPublicationScreen = StyleSheet.create({
   },
   formSubLabel: {
     fontSize: 10,
-    color: 'white', // Cambiado el color a blanco
+    color: 'white', 
     marginBottom: 16,
   },
   imageUploadButton: {
@@ -45,5 +45,56 @@ export const stylesNewPublicationScreen = StyleSheet.create({
     color: 'white',
     marginBottom: 12,
   },
-  // Puedes añadir más estilos según sea necesario para otros campos del formulario
+  reglasContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    marginBottom: 16,
+  },
+  reglaButton: {
+    backgroundColor: '#C2E5F9',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    width: '48%', // Ajustar según veamos necesario
+    marginBottom: 8,
+  },
+  reglaButtonSelected: {
+    backgroundColor: '#38B6FF',
+  },
+  reglaButtonText: {
+    color: '#AEAEAE',
+    fontSize: 16,
+  },
+  reglaButtonSelected: {
+    backgroundColor: '#38B6FF',
+  },
+  reglaButtonTextSelected: {
+    color: 'white',
+  },
+  caracteristicasContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    marginBottom: 16,
+  },
+  caracteristicaButton: {
+    backgroundColor: '#C2E5F9',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    width: '48%', // Ajustar según veamos necesario
+    marginBottom: 8,
+  },
+  caracteristicaButtonSelected: {
+    backgroundColor: '#38B6FF',
+  },
+  caracteristicaButtonText: {
+    color: '#AEAEAE',
+    fontSize: 16,
+  },
+  caracteristicaButtonTextSelected: {
+    color: 'white',
+  },
+  // aqui agregas Mas estilos del form
 });

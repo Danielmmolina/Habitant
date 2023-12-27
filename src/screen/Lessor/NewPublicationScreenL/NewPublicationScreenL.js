@@ -14,11 +14,72 @@ export function NewPublicationScreenL() {
     Montserrat_400Regular
 });
 const [tituloPublicacion, setTituloPublicacion] = useState('Nueva Publicación');
+const [reglas, setReglas] = useState({
+  noBeber: false,
+  horarioLlegada: false,
+  sinMascotas: false,
+  sinVisitas: false,
+  NoEscucharMusicaConVolumenAlto: false,
+  NoFumar: false,
+  RealizarAseo: false,
+  // Agregar más carac
+});
+const [caracteristicas, setCaracteristicas] = useState({
+  comedor: false,
+  estacionamiento: false,
+  tv: false,
+  gastosComunesIncluidos: false,
+  living: false,
+  wifi: false,
+  // Agregar más caract
+});
 if (!fontsLoaded) {
     return null;
 }
 
+const toggleRegla = (regla) => {
+  setReglas((prevReglas) => ({
+    ...prevReglas,
+    [regla]: !prevReglas[regla],
+  }));
+};
+const toggleCaracteristica = (caracteristica) => {
+  setCaracteristicas((prevCaracteristicas) => ({
+    ...prevCaracteristicas,
+    [caracteristica]: !prevCaracteristicas[caracteristica],
+  }));
+};
+const renderBotonRegla = (nombreRegla, label) => (
+  <TouchableOpacity
+    key={nombreRegla}
+    style={[
+      stylesNewPublicationScreen.reglaButton,
+      reglas[nombreRegla] ? stylesNewPublicationScreen.reglaButtonSelected : null,
+    ]}
+    onPress={() => toggleRegla(nombreRegla)}
+  >
+    <Text style={[
+      stylesNewPublicationScreen.reglaButtonText,
+      reglas[nombreRegla] ? stylesNewPublicationScreen.reglaButtonTextSelected : null,
+    ]}>{label}</Text>
+  </TouchableOpacity>
+);
 
+const renderBotonCaracteristica = (nombreCaracteristica, label) => (
+  <TouchableOpacity
+    key={nombreCaracteristica}
+    style={[
+      stylesNewPublicationScreen.caracteristicaButton,
+      caracteristicas[nombreCaracteristica] ? stylesNewPublicationScreen.caracteristicaButtonSelected : null,
+    ]}
+    onPress={() => toggleCaracteristica(nombreCaracteristica)}
+  >
+    <Text style={[
+      stylesNewPublicationScreen.caracteristicaButtonText,
+      caracteristicas[nombreCaracteristica] ? stylesNewPublicationScreen.caracteristicaButtonTextSelected : null,
+    ]}>{label}</Text>
+  </TouchableOpacity>
+);
 
 return (
   <ScrollView style={{ flex: 1 }}>
@@ -37,12 +98,13 @@ return (
         Ejemplo: Vista de fuera de la propiedad, espacios comunes, patio, etc.
       </Text>
 
-      {/* Agregar un componente para seleccionar imágenes, por ejemplo, un botón */}
+      {/*  componente para seleccionar imágenes*/}
       <TouchableOpacity style={stylesNewPublicationScreen.imageUploadButton}>
         <Text style={stylesNewPublicationScreen.imageUploadButtonText}>Seleccionar Imágenes</Text>
       </TouchableOpacity>
      {/* ----------------Espacio para el formulario con campos de texto propiedad----------------- */}
       <View style={stylesNewPublicationScreen.textInputContainer}>
+      <Text style={stylesNewPublicationScreen.formLabel}>Titulo de la Publicación</Text>
         {/* Input dinámico para el título de la publicación */}
         <TextInput
           style={stylesNewPublicationScreen.textInput}
@@ -56,19 +118,37 @@ return (
           style={stylesNewPublicationScreen.textInput}
           placeholder="Ingrese la descripción"
           multiline={true}
-          numberOfLines={4} // Puedes ajustar según sea necesario
-          // Puedes agregar más propiedades según tus necesidades
+          numberOfLines={4} // ajustar segun sea necesario las lineas de descripcion
         />
 
         <Text style={stylesNewPublicationScreen.formLabel}>Ubicación</Text>
         <TextInput
           style={stylesNewPublicationScreen.textInput}
           placeholder="Ingrese la ubicación"
-          // Puedes agregar más propiedades según tus necesidades
         />
       </View>
-      {/* Aquí puedes agregar más campos del formulario según sea necesario */}
-      {/* Por ejemplo, TextInput para descripción, número de habitaciones, etc. */}
+      <Text style={stylesNewPublicationScreen.formLabel}>Presione las reglas de su propiedad:</Text>
+       {/* Botones de reglas */}
+      <View style={stylesNewPublicationScreen.reglasContainer}>
+        {renderBotonRegla('noBeber', 'No Beber')}
+        {renderBotonRegla('horarioLlegada', 'Horario de Llegada')}
+        {renderBotonRegla('sinMascotas', 'Sin Mascotas')}
+        {renderBotonRegla('sinVisitas', 'Sin Visitas')}
+        {renderBotonRegla('noEscucharMusicaConVolumenAlto', 'No Tener La Música Con Volumen Alto')}
+        {renderBotonRegla('noFumar', 'No Fumar')}
+        {renderBotonRegla('realizarAseo', 'Realizar Aseo')}
+      </View>
+      <Text style={stylesNewPublicationScreen.formLabel}>Oprime las características de la propiedad:</Text>
+      {/* Botones de características */}
+      <View style={stylesNewPublicationScreen.caracteristicasContainer}>
+        {renderBotonCaracteristica('comedor', 'Comedor')}
+        {renderBotonCaracteristica('estacionamiento', 'Estacionamiento')}
+        {renderBotonCaracteristica('tv', 'TV')}
+        {renderBotonCaracteristica('gastosComunesIncluidos', 'Gastos Comunes Incluidos')}
+        {renderBotonCaracteristica('living', 'Living')}
+        {renderBotonCaracteristica('wifi', 'Wifi')}
+        {/* Agrega más botones de características según sea necesario */}
+      </View>
     </View>
     
   </ScrollView>
