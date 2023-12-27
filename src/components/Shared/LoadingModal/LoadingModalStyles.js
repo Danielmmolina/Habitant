@@ -20,7 +20,7 @@ export const stylesLoadingModal = StyleSheet.create({
     text:{
         fontSize: 15,
         textAlign: "center",
-    }
+    },
 
     overlay:{
         height: 100,
