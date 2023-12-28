@@ -1,40 +1,52 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
 import { View, ScrollView, TextInput, TouchableOpacity } from 'react-native'
 import { Text, Button } from '@rneui/themed'
 import { stylesNewPublicationScreen } from './NewPublicationStylesL'
 import { styles } from '../../../../styles'
 import { Image } from '@rneui/base'
-import { useFonts, Lobster_400Regular } from "@expo-google-fonts/lobster";
-import { Montserrat_400Regular  } from '@expo-google-fonts/montserrat'
+import * as Font from 'expo-font';
+
 
 export function NewPublicationScreenL() {
+  const [fontsLoaded, setFontsLoaded] = useState(false);
 
-  const [fontsLoaded] = useFonts({
-    Lobster_400Regular,
-    Montserrat_400Regular
-});
-const [tituloPublicacion, setTituloPublicacion] = useState('Nueva Publicación');
-const [reglas, setReglas] = useState({
-  noBeber: false,
-  horarioLlegada: false,
-  sinMascotas: false,
-  sinVisitas: false,
-  NoEscucharMusicaConVolumenAlto: false,
-  NoFumar: false,
-  RealizarAseo: false,
-  // Agregar más carac
-});
-const [caracteristicas, setCaracteristicas] = useState({
-  comedor: false,
-  estacionamiento: false,
-  tv: false,
-  gastosComunesIncluidos: false,
-  living: false,
-  wifi: false,
-  // Agregar más caract
-});
+  useEffect(() => {
+    const loadFontsAsync = async () => {
+      await Font.loadAsync({
+        Lobster_400Regular: require('@expo-google-fonts/lobster'),
+        Montserrat_400Regular: require('@expo-google-fonts/montserrat'),
+      });
+      setFontsLoaded(true);
+    };
+
+    loadFontsAsync();
+  }, []);
+
+  const [tituloPublicacion, setTituloPublicacion] = useState('Nueva Publicación');
+  const [reglas, setReglas] = useState({
+    noBeber: false,
+    horarioLlegada: false,
+    sinMascotas: false,
+    sinVisitas: false,
+    NoEscucharMusicaConVolumenAlto: false,
+    NoFumar: false,
+    RealizarAseo: false,
+  });
+
+  const [caracteristicas, setCaracteristicas] = useState({
+    comedor: false,
+    estacionamiento: false,
+    tv: false,
+    gastosComunesIncluidos: false,
+    living: false,
+    wifi: false,
+  });
+
+  const [habitaciones, setHabitaciones] = useState([
+    { titulo: '', descripcion: '', valor: '', imagenes: [] },
+  ]);
 if (!fontsLoaded) {
-    return null;
+  return <Text>Cargando fuentes...</Text>;
 }
 
 const toggleRegla = (regla) => {
@@ -81,6 +93,74 @@ const renderBotonCaracteristica = (nombreCaracteristica, label) => (
   </TouchableOpacity>
 );
 
+const agregarHabitacion = () => {
+  if (habitaciones.length < 6) {
+    setHabitaciones((prevHabitaciones) => [
+      ...prevHabitaciones,
+      { titulo: '', descripcion: '', valor: '', imagenes: [] },
+    ]);
+  }
+};
+const eliminarHabitacion = (index) => {
+  setHabitaciones((prevHabitaciones) => {
+    const nuevasHabitaciones = [...prevHabitaciones];
+    nuevasHabitaciones.splice(index, 1);
+    return nuevasHabitaciones;
+  });
+};
+
+const renderHabitacion = (habitacion, index) => (
+  <View key={index} style={stylesNewPublicationScreen.habitacionContainer}>
+    <Text style={stylesNewPublicationScreen.formLabel}>Habitación {index + 1}</Text>
+
+    {/* Input para el título de la habitación */}
+    <TextInput
+      style={stylesNewPublicationScreen.textInput}
+      placeholder="Título de la habitación"
+      value={habitacion.titulo}
+      onChangeText={(text) => {
+        const nuevasHabitaciones = [...habitaciones];
+        nuevasHabitaciones[index].titulo = text;
+        setHabitaciones(nuevasHabitaciones);
+      }}
+    />
+
+    {/* Input para la descripción de la habitación */}
+    <TextInput
+      style={stylesNewPublicationScreen.textInput}
+      placeholder="Descripción de la habitación"
+      value={habitacion.descripcion}
+      onChangeText={(text) => {
+        const nuevasHabitaciones = [...habitaciones];
+        nuevasHabitaciones[index].descripcion = text;
+        setHabitaciones(nuevasHabitaciones);
+      }}
+      multiline={true}
+      numberOfLines={4} // Ajusta según sea necesario
+    />
+
+    {/* Input para el valor de la habitación */}
+    <TextInput
+      style={stylesNewPublicationScreen.textInput}
+      placeholder="Valor de la habitación"
+      value={habitacion.valor}
+      onChangeText={(text) => {
+        const nuevasHabitaciones = [...habitaciones];
+        nuevasHabitaciones[index].valor = text;
+        setHabitaciones(nuevasHabitaciones);
+      }}
+    />
+    <TouchableOpacity style={stylesNewPublicationScreen.imageUploadButton}>
+      <Text style={stylesNewPublicationScreen.imageUploadButtonText}>Agregar Imágenes</Text>
+    </TouchableOpacity>
+    <TouchableOpacity
+      style={stylesNewPublicationScreen.agregarHabitacionButton}
+      onPress={() => eliminarHabitacion(index)}
+    >
+      <Text style={stylesNewPublicationScreen.agregarHabitacionButtonText}>Eliminar Habitación</Text>
+    </TouchableOpacity>
+  </View>
+);
 return (
   <ScrollView style={{ flex: 1 }}>
     <View style={styles.containerLogo}>
@@ -149,6 +229,15 @@ return (
         {renderBotonCaracteristica('wifi', 'Wifi')}
         {/* Agrega más botones de características según sea necesario */}
       </View>
+      {/* Sección de habitaciones */}
+      <Text style={stylesNewPublicationScreen.formLabel}>Añadir Habitaciones:</Text>
+      {habitaciones.map((habitacion, index) => renderHabitacion(habitacion, index))}
+        <TouchableOpacity
+          style={stylesNewPublicationScreen.agregarHabitacionButton}
+          onPress={agregarHabitacion}
+        >
+          <Text style={stylesNewPublicationScreen.agregarHabitacionButtonText}>Agregar Habitación</Text>
+        </TouchableOpacity>
     </View>
     
   </ScrollView>

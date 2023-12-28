@@ -96,5 +96,19 @@ export const stylesNewPublicationScreen = StyleSheet.create({
   caracteristicaButtonTextSelected: {
     color: 'white',
   },
+  habitacionContainer: {
+    marginBottom: 16,
+  },
+  agregarHabitacionButton: {
+    backgroundColor: '#38B6FF',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  agregarHabitacionButtonText: {
+    color: 'white',
+    fontSize: 16,
+  },
   // aqui agregas Mas estilos del form
 });
