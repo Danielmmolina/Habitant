@@ -110,5 +110,29 @@ export const stylesNewPublicationScreen = StyleSheet.create({
     color: 'white',
     fontSize: 16,
   },
+  habitacionContainer: {
+    marginBottom: 16,
+    padding: 16,
+    backgroundColor: '#2E3035',
+    borderRadius: 10,
+  },
+  habitacionTextInput: {
+    backgroundColor: '#454B53',
+    borderRadius: 5,
+    padding: 10,
+    color: 'white',
+    marginBottom: 12,
+  },
+  eliminarHabitacionButton: {
+    backgroundColor: 'red',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginTop: 8,
+  },
+  eliminarHabitacionButtonText: {
+    color: 'white',
+    fontSize: 16,
+  },
   // aqui agregas Mas estilos del form
 });

@@ -162,11 +162,13 @@ const renderHabitacion = (habitacion, index) => (
   </View>
 );
 return (
-  <ScrollView style={{ flex: 1 }}>
-    <View style={styles.containerLogo}>
+  <>
+  <View style={styles.containerLogo}>
       <Image source={require('../../../../assets/LogoHabitant.png')} style={styles.logoImg} />
       <Text style={{ ...styles.logoText, fontFamily: 'Lobster_400Regular' }}> Habitant </Text>
     </View>
+  <ScrollView style={{ flex: 1 }}>
+    
     
      {/* Título dinámico */}
     <Text style={{ ...stylesNewPublicationScreen.textTitle, fontFamily: 'Montserrat_400Regular' }}>{tituloPublicacion}</Text>
@@ -241,5 +243,6 @@ return (
     </View>
     
   </ScrollView>
+  </>
 );
 }
