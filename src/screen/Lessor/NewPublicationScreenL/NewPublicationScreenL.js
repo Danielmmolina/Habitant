@@ -13,7 +13,6 @@ import { v4 as uuid } from 'uuid';
 import { doc, setDoc } from 'firebase/firestore'
 import { db } from '../../../utils/firebase';
 import { useNavigation } from '@react-navigation/native';
-import { Header } from '../../../components/Shared/Header/Header';
 
 export function NewPublicationScreenL() {
   const navigation = useNavigation();
