@@ -26,8 +26,8 @@ export function NewPublicationScreenL() {
           ...formValue,
           id: uuid(),
           createdAt: new Date(),
-          rules: formik.values.rules,  // Agregar las reglas
-          characteristics: formik.values.characteristics,  // Agregar las características
+          rules: formValue.rules,
+          characteristics: formValue.characteristics,
         };
   
         await setDoc(doc(db, 'infoPublication', newData.id), newData);
@@ -38,6 +38,7 @@ export function NewPublicationScreenL() {
       }
     },
   });
+  
 
   const [fontsLoaded] = useFonts({
     Lobster_400Regular,

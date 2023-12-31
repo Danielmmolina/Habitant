@@ -41,8 +41,8 @@ export  function FormPublicationL(props) {
         ...prevRules,
         [rule]: !prevRules[rule],
       }));
-      formik.setFieldValue('rules', { ...formik.values.rules, [rule]: !formik.values.rules[rule] });
-      console.log('formik.values after toggling rule:', formik.values); // Agrega esta línea
+      formik.setFieldValue('rules', { ...formik.values.rules, [rule]: true });
+      console.log('Estos son los valores despues de presionar las reglas:', formik.values);
     };
     
     const toggleCharacteristic = (characteristic) => {
@@ -50,8 +50,8 @@ export  function FormPublicationL(props) {
         ...prevCharacteristics,
         [characteristic]: !prevCharacteristics[characteristic],
       }));
-      formik.setFieldValue('characteristics', { ...formik.values.characteristics, [characteristic]: !formik.values.characteristics[characteristic] });
-      console.log('formik.values after toggling characteristic:', formik.values); // Agrega esta línea
+      formik.setFieldValue('characteristics', { ...formik.values.characteristics, [characteristic]: true });
+      console.log('Estos son los valores despues de presionar las caracteristicas:', formik.values);
     };
 
     const renderBotonRule = (nameRule, label) => (
