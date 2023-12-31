@@ -9,6 +9,7 @@ export function initialValues(){
         telefono: 900000000,
         password: "",
         repeatpassword: "",
+
     };
 }
 
@@ -16,6 +17,7 @@ export function initialValuesLogin(){
     return {
         email: "",
         password: "",
+
     };
 }
 
@@ -41,8 +43,7 @@ export function validationSchema_Login() {
     return Yup.object({
          
         email: Yup.string().email('Email ingresado no válido').required('Email no ingresado'),
-
-          password: Yup.string().required("Contraseña no ingresada"),
+        password: Yup.string().required("Contraseña no ingresada"),
 
 
     })

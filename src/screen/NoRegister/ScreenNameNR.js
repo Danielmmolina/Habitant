@@ -6,9 +6,9 @@ const NRStack = {
     formA: 'Formulario Arrendador',
     formE: 'Formulario Estudiante',
     student: 'Navegacion a perfil usuario',
-    lessor: 'Navegacion a perfil arrendador'
+    lessor: 'Navegacion a perfil arrendador',
+    
 }
-
 
 export const screensNR = {
     noRegister: NRStack 

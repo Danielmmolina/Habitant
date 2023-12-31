@@ -1,7 +1,7 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeScreenL } from '../HomeScreenL/HomeScreenL';
-import { NewPublicationScreen } from '../NewPublicationScreenL/NewPublicationScreenL';
+import { NewPublicationScreenL } from '../NewPublicationScreenL/NewPublicationScreenL';
 import { InterestedScreen } from '../InterestedScreenL/InterestedScreenL';
 import { ProfileScreen } from '../ProfileScreenL/ProfileScreenL';
 import { styles } from '../../../../styles';
@@ -27,7 +27,7 @@ export function AppNavigationL() {
    
 
       <Tab.Screen name = 'Inicio' component={ HomeScreenL }  />
-      <Tab.Screen name='Nueva publicación' component={ NewPublicationScreen } />
+      <Tab.Screen name='Nueva publicación' component={ NewPublicationScreenL } />
       <Tab.Screen name='Interesados' component={ InterestedScreen }  />
       <Tab.Screen name='Mi perfil' component={ ProfileScreen }  />   
     </Tab.Navigator>

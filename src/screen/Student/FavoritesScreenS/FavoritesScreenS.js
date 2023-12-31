@@ -6,6 +6,7 @@ import { styles } from '../../../../styles'
 import { stylesFavoritesScreen } from './FavoritesScreenStyleS'
 import { useFonts, Lobster_400Regular } from "@expo-google-fonts/lobster";
 import { Montserrat_400Regular  } from '@expo-google-fonts/montserrat'
+import { Header } from '../../../components/Shared/Header/Header'
 
 export function FavoritesScreen() {
 
@@ -22,12 +23,7 @@ export function FavoritesScreen() {
   return (
     <>
 
-        <View style={styles.containerLogo}> 
-
-         <Image source={require('../../../../assets/LogoHabitant.png')} style={styles.logoImg} />
-         <Text style={{ ...styles.logoText, fontFamily: 'Lobster_400Regular',}}> Habitant </Text>
-
-        </View>
+        <Header />
 
         <Text style={{ ...stylesFavoritesScreen.textTitle, fontFamily:'Montserrat_400Regular'}}> Publicaciones que sigues: </Text>
        

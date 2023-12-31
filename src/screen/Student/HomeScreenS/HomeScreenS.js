@@ -1,16 +1,34 @@
 import { View } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { stylesHomeScreen } from './HomeScreenStylesS'
-import { styles } from '../../../../styles'
-import { Text, Button } from '@rneui/themed'
-import { Image } from '@rneui/base'
-import { useFonts, Lobster_400Regular } from "@expo-google-fonts/lobster";
+import { Text } from '@rneui/themed'
+import { useFonts  } from "@expo-google-fonts/lobster";
 import { Montserrat_400Regular  } from '@expo-google-fonts/montserrat'
+import { Header } from '../../../components/Shared/Header/Header'
+import { collection, onSnapshot, orderBy, query} from 'firebase/firestore'
+import { db } from '../../../utils/firebase'
+import { screensNR } from '../../NoRegister/ScreenNameNR';
+import { LoadingModal } from '../../../components/Shared/LoadingModal/LoadingModal';
+import { ListPublication } from '../../../components/Publication/ListPublication/ListPublication';
 
 export function HomeScreen() {
 
+  const [publication, setPublication] = useState(null);
+
+  useEffect(() => {
+    const q = query(
+      collection(db, "infoPublication"), 
+      orderBy('createdAt', 'asc'),
+    );
+
+    onSnapshot(q, (snapshot) => {
+      setPublication(snapshot.docs);
+    })
+    
+  }, []);
+
   const [fontsLoaded] = useFonts({
-    Lobster_400Regular,
+    
     Montserrat_400Regular
 });
 
@@ -22,14 +40,16 @@ if (!fontsLoaded) {
 
   return (
     <> 
-      <View style={styles.containerLogo}> 
+      
+      <Header />
 
-        <Image source={require('../../../../assets/LogoHabitant.png')} style={styles.logoImg} />
-        <Text style={{ ...styles.logoText, fontFamily: 'Lobster_400Regular',}}> Habitant </Text>
-        
-       </View>
+     {!publication ? (
+      <LoadingModal show text = 'Cargando publicaciones' />
+     ) : (  
+      <ListPublication publication = {publication} />
+      )
 
-       <Text style={{ ...stylesHomeScreen.textTitle, fontFamily: 'Montserrat_400Regular'}}> Publicaciones recomendadas </Text>
+     }
 
      </>
    

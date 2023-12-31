@@ -6,6 +6,7 @@ import { Text } from '@rneui/themed'
 import { Image } from '@rneui/base'
 import { useFonts, Lobster_400Regular } from "@expo-google-fonts/lobster";
 import { Montserrat_400Regular  } from '@expo-google-fonts/montserrat'
+import { Header } from '../../../components/Shared/Header/Header'
 
 export function SearchScreen() {
 
@@ -21,12 +22,7 @@ if (!fontsLoaded) {
   return (
     <>
 
-      <View style={styles.containerLogo}> 
-
-        <Image source={require('../../../../assets/LogoHabitant.png')} style={styles.logoImg} />
-        <Text style={{ ...styles.logoText, fontFamily: 'Lobster_400Regular',}}> Habitant </Text>
-
-      </View>
+      <Header />
 
       <Text style={{ ...stylesSearchScreen.textTitle, fontFamily: 'Montserrat_400Regular'}}> Búsqueda personalizada </Text>
       
