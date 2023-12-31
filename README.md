@@ -1,6 +1,6 @@
 # Habitant
 
-Proyecto de taller de desarrollo.
+# Proyecto de taller de desarrollo.
 
 ###################### EN CASO DE EJECUTAR EN UBUNTU 22.04 ######################
 ### Actualiza la lista de paquetes en el sistema
@@ -53,3 +53,19 @@ yarn start
 
 ### En caso de que se requiera cambiar el puerto utilizar el siguiente comando en donde "PUERTO" se debe cambiar por el puerto deseado:
 yarn start --port PUERTO --reset-cache
+
+### Ahora, como nosotros trabajamos con la aplicacion de Expo Go utilizamos la dependencia TUNNEL de react native para ejecutar la app en Expo Go, sin necesidad de estar conectado en la misma red para ello ejecutar el siguiente comando y reemplazar el PUERTO por el puerto que se desea utilizar
+
+yarn start --tunnel --port PUERTO
+
+### Ahora si queremos ejecutar la aplicacion automaticamente cuando se hagan cambios, debemos instalar pm2.
+
+yarn global add pm2
+
+### Para ejecutarlo, debemos estar en el directorio donde se encuentra nuestro archivo de ejecucion, en nuestro caso el App.js y ejecutar los comandos uno por uno
+
+pm2 start App.js
+
+pm2 startup
+
+pm2 save
