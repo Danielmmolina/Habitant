@@ -1,0 +1,92 @@
+[33mcommit 7d9d6bbfe65d3250ed23879d07f86ad5aaf67a77[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mJavier[m[33m, [m[1;31morigin/Javier[m[33m)[m
+Author: SoulXav <avaldebenito846@gmail.com>
+Date:   Tue Dec 12 23:01:35 2023 -0400
+
+    Formulario
+
+[33mcommit ff17a4286379912a85ebdca128c32d3323288c66[m
+Author: SoulXav <avaldebenito846@gmail.com>
+Date:   Mon Dec 11 20:02:08 2023 -0400
+
+    Pequeñas modificaciones para arreglar un bug de vista y los iconos de arrendador
+
+[33mcommit 64bc4fb95d903a27b3aeeb8bfab3c84f489113c4[m
+Author: SoulXav <avaldebenito846@gmail.com>
+Date:   Mon Dec 11 12:11:02 2023 -0400
+
+    Primera version estable con diferenciacion de usuarios
+
+[33mcommit d10e3669a2fb9ce3da94fb64bca66f59468a600f[m
+Author: SoulXav <avaldebenito846@gmail.com>
+Date:   Mon Dec 11 11:29:31 2023 -0400
+
+    Creacion y modificacion del usuario Lessor, en proceso la auth
+
+[33mcommit 19cef63b9e9fbb70d522125e3c35c30b12f43588[m[33m ([m[1;31morigin/Desarrollo-Javier[m[33m)[m
+Author: danielmolina22 <danielmolinamoran18@gmail.com>
+Date:   Fri Dec 1 18:59:37 2023 -0300
+
+    Perfil usuario
+
+[33mcommit d7e5cf91a6d55029a191a8a733e2ed73be6d1c7f[m
+Author: danielmolina22 <danielmolinamoran18@gmail.com>
+Date:   Tue Nov 14 23:30:08 2023 -0300
+
+    corrección de nombre
+
+[33mcommit ccff0892039ea89bf1ee6ba08d1a9d9bbe89b44c[m
+Author: danielmolina22 <danielmolinamoran18@gmail.com>
+Date:   Tue Nov 14 23:24:07 2023 -0300
+
+    screens y navegacion creada
+
+[33mcommit 3fb6752d87d9985b9123b0dad33d80be83adafc6[m
+Author: danielmolina22 <danielmolinamoran18@gmail.com>
+Date:   Fri Oct 13 21:06:26 2023 -0300
+
+    carpetas restantes
+
+[33mcommit 98b5b6d6ad3c9850924996e9b0b0c11a34e78d17[m
+Author: danielmolina22 <danielmolinamoran18@gmail.com>
+Date:   Fri Oct 13 21:00:13 2023 -0300
+
+    estuctura aplicacion
+
+[33mcommit 8977977a72fda6f983a8117399a0f28b0e04fa52[m
+Merge: 5caabe2 029ac5a
+Author: danielmolina22 <danielmolinamoran18@gmail.com>
+Date:   Wed Oct 11 21:43:52 2023 -0300
+
+    Merge branch 'main' of https://github.com/Danielmolina22/Habitant
+
+[33mcommit 5caabe2346319ffeee319c7871b57a6b672ddfdb[m
+Author: danielmolina22 <danielmolinamoran18@gmail.com>
+Date:   Wed Oct 11 21:41:36 2023 -0300
+
+    Probando commit
+
+[33mcommit 107096ff09abbf710fe1e44f50b978b219b53e4b[m
+Author: danielmolina22 <danielmolinamoran18@gmail.com>
+Date:   Wed Oct 11 21:39:20 2023 -0300
+
+    Probando commit
+
+[33mcommit 029ac5a5e0d451ae0a7470ab35cf5fd67c1e3e90[m
+Author: Javier Valdebenito <117677456+JavierValdebenito2001@users.noreply.github.com>
+Date:   Wed Oct 11 21:33:41 2023 -0300
+
+    Update README.md
+
+[33mcommit fa7fdb2b52968f5f6165a61f0c0c5a060e27ca35[m
+Author: danielmolina22 <danielmolinamoran18@gmail.com>
+Date:   Wed Oct 11 20:46:44 2023 -0300
+
+    Inicio de aplicación
+    
+    Se inicia la aplicación
+
+[33mcommit 3239364b096faf517844fa55880980059ae78d2c[m
+Author: Danielmolina22 <146103337+Danielmolina22@users.noreply.github.com>
+Date:   Wed Oct 11 20:19:06 2023 -0300
+
+    Initial commit
