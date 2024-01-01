@@ -13,10 +13,12 @@ import { v4 as uuid } from 'uuid';
 import { doc, setDoc } from 'firebase/firestore'
 import { db } from '../../../utils/firebase';
 import { useNavigation } from '@react-navigation/native';
+import { getAuth } from 'firebase/auth'
 
 export function NewPublicationScreenL() {
   const navigation = useNavigation();
-
+  const { uid} = getAuth().currentUser;
+  console.log(uid);
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: validationSchema(),
@@ -26,6 +28,7 @@ export function NewPublicationScreenL() {
         const newData = {
           ...formValue,
           id: uuid(),
+          uidL: uid,
           createdAt: new Date(),
           rules: formValue.rules,
           characteristics: formValue.characteristics,
@@ -64,7 +67,7 @@ export function NewPublicationScreenL() {
           
           <FormPublicationL formik={formik} />
           
-         <Button onPress={formik.handleSubmit} loading={formik.isSubmitting}> <Text> Crear </Text> </Button>
+          <Button onPress={formik.handleSubmit} loading={formik.isSubmitting}> <Text> Crear </Text> </Button>
           
           </View>
           
