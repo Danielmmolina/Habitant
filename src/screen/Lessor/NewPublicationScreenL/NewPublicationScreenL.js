@@ -40,46 +40,17 @@ export function NewPublicationScreenL() {
     },
   });
   
-export function NewPublicationScreenL() {
-  const navigation = useNavigation();
-
-  const formik = useFormik({
-    initialValues: initialValues(),
-    validationSchema: validationSchema(),
-    validateOnChange: false,
-    onSubmit: async (formValue) => {
-      try {
-        const newData = {
-          ...formValue,
-          id: uuid(),
-          createdAt: new Date(),
-          rules: formValue.rules,
-          characteristics: formValue.characteristics,
-        };
-  
-        await setDoc(doc(db, 'infoPublication', newData.id), newData);
-  
-        navigation.goBack();
-      } catch (error) {
-        console.log(error);
-      }
-    },
-  });
-  
 
   const [fontsLoaded] = useFonts({
     Lobster_400Regular,
     Montserrat_400Regular
   });
-  });
 
-  if (!fontsLoaded) {
   if (!fontsLoaded) {
     return null;
   }
 
   return (
-  <>
   <>
 
     <Header/>
