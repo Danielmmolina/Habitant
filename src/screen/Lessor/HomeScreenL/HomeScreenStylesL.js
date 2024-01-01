@@ -10,6 +10,11 @@ export const stylesHomeScreen = StyleSheet.create({
         textAlign: "center",
         marginTop: '10%',
     },
-
+    containerText:{
+        borderBottomWidth: 2,
+        height: 100,
+        alignItems: "center",
+        justifyContent: "center"
+    },
 
 });
