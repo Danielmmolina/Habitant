@@ -95,4 +95,10 @@ export const StylesFormPublication = StyleSheet.create({
     characteristicButtonTextSelected: {
         color: 'white',
     },
+    characteristicsRoomsContainer: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        marginBottom: 16,
+    },
 });
