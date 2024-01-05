@@ -43,7 +43,7 @@ export function LoginScreenNR(props) {
                     formValue.password
                 );
                 
-           
+                    navigation.navigate(screensNR.noRegister.student);
 
             } catch (error) {
                 Toast.show({

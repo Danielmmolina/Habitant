@@ -7,7 +7,7 @@ const NRStack = {
     formE: 'Formulario Estudiante',
     student: 'Navegacion a perfil usuario',
     lessor: 'Navegacion a perfil arrendador',
-    
+    publication: 'publication',
 }
 
 export const screensNR = {

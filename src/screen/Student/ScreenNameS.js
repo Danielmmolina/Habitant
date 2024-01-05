@@ -1,1 +1,11 @@
-//nombre  de las ventanas.
+const studentStack = {
+    home: 'Vista principal',
+    publication: 'Publicacion', 
+
+  };
+  
+  export const screensS = {
+    student: studentStack,
+  };
+  
+  

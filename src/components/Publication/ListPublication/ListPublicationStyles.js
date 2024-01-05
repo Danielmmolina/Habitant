@@ -33,10 +33,15 @@ export const StylesListPublication = StyleSheet.create({
         marginRight: 10,
     },
 
+    containerInfoText:{
+        width: '100%',
+
+    },
+
     textTitlePublication:{
         fontSize: 15,
         color: 'rgb(255, 255, 255)',
-        textAlign: "center",
+        paddingRight: 100,
     },
 
 
