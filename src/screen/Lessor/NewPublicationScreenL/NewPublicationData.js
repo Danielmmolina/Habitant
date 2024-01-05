@@ -25,7 +25,7 @@ export function initialValues() {
     },
       titleRoom: "",
       roomImages: [],
-      valueRoom: "",
+      valueRoom: 0,
       characteristicsRooms: {
         cama: false,
         ventilador: false,
@@ -66,7 +66,7 @@ export function validationSchema() {
     }),
       titleRoom: Yup.string().required("Título de la habitación no ingresado"),
       roomImages: Yup.array().min(1, "Se requiere una imagen como mínimo.").required("Se requiere una imagen como mínimo."),
-      valueRoom: Yup.string().required("Precio de la habitación no ingresado"),
+      valueRoom: Yup.number().required("Precio de la habitación no ingresado"),
       characteristicsRooms: Yup.object().shape({
         cama: Yup.boolean(),
         ventilador: Yup.boolean(),

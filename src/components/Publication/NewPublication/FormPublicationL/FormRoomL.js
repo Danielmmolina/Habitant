@@ -75,9 +75,9 @@ export  function FormRoomL(props) {
           placeholder='Precio de la habitacion' 
           inputStyle={{ color: 'rgba(255, 255, 255, 0.77)', marginLeft: 10, fontFamily: 'Montserrat_800ExtraBold'}} 
           inputContainerStyle={StylesFormPublication.input}
-          onChangeText={(text => formik.setFieldValue("valueRoom", text))}
+          onChangeText={(text => formik.setFieldValue("valueRoom", parseFloat(text)))}
           errorMessage={formik.errors.valueRoom}
-          
+          keyboardType="numeric"
         />
         <Text style={StylesFormPublication.formLabel}>Oprime las características de la habitación:</Text>
         {/* Botones de características */}

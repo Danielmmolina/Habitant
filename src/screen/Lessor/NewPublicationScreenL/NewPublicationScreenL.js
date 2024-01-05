@@ -1,21 +1,21 @@
-import { View, ScrollView, } from 'react-native'
-import React, { Component } from 'react'
-import { stylesNewPublicationScreen } from './NewPublicationStylesL'
-import { Text, Button } from '@rneui/themed'
+import { View, ScrollView } from 'react-native';
+import React, { useCallback } from 'react';
+import { stylesNewPublicationScreen } from './NewPublicationStylesL';
+import { Text, Button } from '@rneui/themed';
 import { useFonts, Lobster_400Regular } from "@expo-google-fonts/lobster";
-import { Montserrat_400Regular  } from '@expo-google-fonts/montserrat'
-import { initialValues, validationSchema} from './NewPublicationData';
+import { Montserrat_400Regular } from '@expo-google-fonts/montserrat';
+import { initialValues, validationSchema } from './NewPublicationData';
 import { FormPublicationL } from '../../../components/Publication/NewPublication/FormPublicationL/FormPublicationL';
 import { UploadImagesForm } from '../../../components/Publication/NewPublication/UploadImagesForm/UploadImagesForm';
-import { UploadImagesRoom} from '../../../components/Publication/NewPublication/UploadImagesForm/UploadImagesRoom';
+import { UploadImagesRoom } from '../../../components/Publication/NewPublication/UploadImagesForm/UploadImagesRoom';
 import { FormRoomL } from '../../../components/Publication/NewPublication/FormPublicationL/FormRoomL';
 import { Header } from '../../../components/Shared/Header/Header';
 import { useFormik } from 'formik';
 import { v4 as uuid } from 'uuid';
-import { doc, setDoc } from 'firebase/firestore'
+import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../../../utils/firebase';
-import { useNavigation } from '@react-navigation/native';
-import { getAuth } from 'firebase/auth'
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import { getAuth } from 'firebase/auth';
 
 export function NewPublicationScreenL() {
   const navigation = useNavigation();
@@ -25,7 +25,7 @@ export function NewPublicationScreenL() {
     initialValues: initialValues(),
     validationSchema: validationSchema(),
     validateOnChange: false,
-    onSubmit: async (formValue, { resetForm } ) => {
+    onSubmit: async (formValue) => {
       try {
         const newData = {
           ...formValue,
@@ -40,14 +40,19 @@ export function NewPublicationScreenL() {
         await setDoc(doc(db, 'infoPublication', newData.id), newData);
         console.log("Documento guardado con éxito.");
 
-        resetForm();
-
         navigation.goBack();
       } catch (error) {
         console.error("Error al guardar datos en Firestore:", error);
       }
     },
   });
+
+  useFocusEffect(
+    useCallback(() => {
+      // Restablecer manualmente los valores del formulario al obtener el foco
+      formik.resetForm({ values: initialValues() });
+    }, [])
+  );
 
   const [fontsLoaded] = useFonts({
     Lobster_400Regular,
@@ -61,17 +66,17 @@ export function NewPublicationScreenL() {
   return (
     <>
       <Header />
-        <ScrollView>
-        <Text style={{ ...stylesNewPublicationScreen.textTitle, fontFamily: 'Montserrat_400Regular'}}> Nueva publicación </Text>
+      <ScrollView>
+        <Text style={{ ...stylesNewPublicationScreen.textTitle, fontFamily: 'Montserrat_400Regular' }}> Nueva publicación </Text>
 
-          <View>
-            <UploadImagesForm formik={formik} />
-            <FormPublicationL formik={formik} />
-            <UploadImagesRoom formik={formik} />
-            <FormRoomL formik={formik} />
-            <Button onPress={formik.handleSubmit} loading={formik.isSubmitting}> <Text> Crear </Text> </Button>
-          </View>
-        </ScrollView>
-      </>
-  )
+        <View>
+          <UploadImagesForm formik={formik} />
+          <FormPublicationL formik={formik} />
+          <UploadImagesRoom formik={formik} />
+          <FormRoomL formik={formik} />
+          <Button onPress={formik.handleSubmit} loading={formik.isSubmitting}> <Text> Crear </Text> </Button>
+        </View>
+      </ScrollView>
+    </>
+  );
 }

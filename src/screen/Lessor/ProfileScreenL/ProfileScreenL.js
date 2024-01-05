@@ -12,6 +12,7 @@ import { db } from '../../../utils/firebase'
 import { FontAwesome5, Entypo, FontAwesome, MaterialCommunityIcons  } from '@expo/vector-icons'
 import * as ImagePicker from 'expo-image-picker'
 import { LoadingModal } from '../../../components/Shared/LoadingModal/LoadingModal'
+import { Header } from '../../../components/Shared/Header/Header';
 
 export function ProfileScreen() {
 
@@ -92,10 +93,7 @@ if(!show){
     
     <>
 
-        <View style={styles.containerLogo}> 
-          <Image source={require('../../../../assets/LogoHabitant.png')} style={styles.logoImg} />
-          <Text style={{ ...styles.logoText, fontFamily: 'Lobster_400Regular'}}> Habitant </Text>     
-        </View>
+        <Header/>
 
       <ScrollView> 
         <Text style={{ ...stylesProfileScreen.textTitle, fontFamily: 'Montserrat_700Bold'}}> Mi perfil</Text>
