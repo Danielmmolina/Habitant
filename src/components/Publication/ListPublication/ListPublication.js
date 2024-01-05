@@ -3,11 +3,17 @@ import React from 'react'
 import { StylesListPublication } from './ListPublicationStyles'
 import { Montserrat_400Regular, Montserrat_700Bold, useFonts  } from '@expo-google-fonts/montserrat'
 import { Text, Image } from '@rneui/base'
-import { map } from 'lodash'
+import { useNavigation } from '@react-navigation/native'
+import { screensS } from '../../../screen/Student/ScreenNameS'
+
 
 
 export  function ListPublication(props) {
     const { publication } = props;
+    
+    const navigation = useNavigation();
+
+    
 
     const [fontsLoaded] = useFonts({
     
@@ -18,12 +24,15 @@ export  function ListPublication(props) {
     
     if (!fontsLoaded) {
         return null;
-    }
+    };
 
     const goToPublication = (publication) => {
-        console.log("ir a la publicacion");
-        console.log(publication.title)
-    }
+        navigation.navigate(screensS.student.publication, { id: publication.id });
+      
+      };
+      
+      
+
 
   return (
 
@@ -41,7 +50,7 @@ export  function ListPublication(props) {
             const trueCharacteristics = Object.keys(publication.characteristics).filter(
                 (key) => publication.characteristics[key] === true
               );
-              console.log(trueCharacteristics);
+           
 
             return (
                 <TouchableOpacity style={StylesListPublication.container} onPress = {() => goToPublication(publication)} >
@@ -50,10 +59,10 @@ export  function ListPublication(props) {
 
                         <Image source={{ uri: publication.images[0]}} style={StylesListPublication.image}  />
 
-                        <View >
+                        <View style={StylesListPublication.containerInfoText}>
                             <Text style={{ ...StylesListPublication.textTitlePublication, fontFamily: 'Montserrat_700Bold'}}>{publication.title.toUpperCase()}</Text>
                             <Text style={{ ...StylesListPublication.textInfoPublication, fontFamily: 'Montserrat_400Regular'}}> {trueCharacteristics.join(', ')} </Text>
-                            <Text style={{ ...StylesListPublication.textInfoPublication, fontFamily: 'Montserrat_400Regular'}}>Calificacion</Text>
+                            {/*<Text style={{ ...StylesListPublication.textInfoPublication, fontFamily: 'Montserrat_400Regular'}}>Calificacion</Text>*/}
                         
                         </View>
 

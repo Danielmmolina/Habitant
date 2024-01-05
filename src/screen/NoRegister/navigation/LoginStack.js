@@ -7,12 +7,17 @@ import { FormLessorScreen } from "../Forms/FormLessorScreen";
 import { FormStudentScreen } from "../Forms/FormStudentScreen";
 import { AppNavigationS } from '../../Student/navigation/AppNavigationS'
 import { AppNavigationL } from '../../Lessor/navigation/AppNavigationL'
+import { PublicationScreen } from "../../../components/Publication/PublicationScreen/PublicationScreen";
 
 const Stack = createNativeStackNavigator();
 
 export function LoginStack(){
 
+    
+
     return(
+
+
         <Stack.Navigator screenOptions={{
             headerShown: false,          
         }}>
@@ -46,10 +51,21 @@ export function LoginStack(){
                 name = {screensNR.noRegister.student}
                 component={AppNavigationS}
             />
+
             <Stack.Screen 
                 name = {screensNR.noRegister.lessor}
                 component={AppNavigationL}
             />
+
+            <Stack.Screen 
+                name = {screensNR.noRegister.publication}
+                component={PublicationScreen}
+            />
+
+
+           
+
+
 
 
 

@@ -13,6 +13,7 @@ export function OptionsLogin(props) {
 
     const goToLogin= () => {
         navigation.navigate(screensNR.noRegister.login);
+        
     }
 
     const goToRegister = () => {

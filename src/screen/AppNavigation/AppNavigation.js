@@ -3,11 +3,13 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { db } from "../../utils/firebase";
 import { AppNavigationNR } from "../NoRegister/navigation/AppNavigationNR";
 import { AppNavigationS } from "../Student/navigation/AppNavigationS";
-import { AppNavigationL } from "../Lessor/navigation/AppNavigationL"; // Importo la navegación de "Arrendador"
+import { AppNavigationL } from "../Lessor/navigation/AppNavigationL"; 
 import { doc, getDoc } from "firebase/firestore";
 import { LoadingModal } from "../../components/Shared/LoadingModal/LoadingModal";
+import { useNavigation } from "@react-navigation/native";
 
 export function AppNavigation() {
+
     const [userRole, setUserRole] = useState(null);
     const [show, setShow] = useState(true);
 
@@ -36,6 +38,7 @@ export function AppNavigation() {
     if (userRole === 'Estudiante') {    
     
         return <AppNavigationS />;
+        
     }  if (userRole === 'Arrendador') {
         
         return <AppNavigationL />;

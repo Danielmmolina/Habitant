@@ -14,8 +14,9 @@ import { ListPublication } from '../../../components/Publication/ListPublication
 export function HomeScreen() {
 
   const [publication, setPublication] = useState(null);
-
+  const [show, setShow] = useState(false);
   useEffect(() => {
+    setShow(true);
     const q = query(
       collection(db, "infoPublication"), 
       orderBy('createdAt', 'asc'),
@@ -24,6 +25,7 @@ export function HomeScreen() {
     onSnapshot(q, (snapshot) => {
       setPublication(snapshot.docs);
     })
+    setShow(false);
     
   }, []);
 
@@ -44,8 +46,9 @@ if (!fontsLoaded) {
       <Header />
 
      {!publication ? (
-      <LoadingModal show text = 'Cargando publicaciones' />
+      <LoadingModal show={show} text = 'Cargando publicaciones' />
      ) : (  
+      
       <ListPublication publication = {publication} />
       )
 

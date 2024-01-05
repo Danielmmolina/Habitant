@@ -14,7 +14,10 @@ import * as ImagePicker from 'expo-image-picker'
 import { LoadingModal } from '../../../components/Shared/LoadingModal/LoadingModal'
 import { Header } from '../../../components/Shared/Header/Header'
 
+import { screensNR } from '../../NoRegister/ScreenNameNR'
+
 export function ProfileScreen() {
+
 
   const { uid, photoURL, email} = getAuth().currentUser;
   const [infoUser, setInfoUser] = useState('');
@@ -79,12 +82,13 @@ const updatePhotoUrl = async (imagePath) => {
   
 
 
-}
+};
 
+ 
 const logout = async () => {
   const auth = getAuth();
   await signOut(auth);
-}
+ }
 
 
   if(!show) {
