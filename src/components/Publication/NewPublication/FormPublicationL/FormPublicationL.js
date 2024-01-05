@@ -143,16 +143,7 @@ export  function FormPublicationL(props) {
           {renderBotonCharacteristic('living', 'Living')}
           {renderBotonCharacteristic('wifi', 'Wifi')}
         </View>
-
       </View>
-
-        
-
     </>
-    
-
-
-
-
   )
-}
+} 

@@ -14,7 +14,7 @@ export  function FormRoomL(props) {
         Montserrat_800ExtraBold,
     });
 
-    const [characteristics, setCharacteristics] = useState({
+    const [characteristicsRooms, setCharacteristicsRooms] = useState({
       cama: false,
       ventilador: false,
       banoPersonal: false,
@@ -30,31 +30,31 @@ export  function FormRoomL(props) {
         return null;
     }
 
-    const toggleCharacteristic = (characteristic) => {
-      setCharacteristics((prevCharacteristics) => ({
-        ...prevCharacteristics,
-        [characteristic]: !prevCharacteristics[characteristic],
+    const toggleCharacteristic = (characteristicRoom) => {
+      setCharacteristicsRooms((prevCharacteristicsRooms) => ({
+        ...prevCharacteristicsRooms,
+        [characteristicRoom]: !prevCharacteristicsRooms[characteristicRoom],
       }));
-      formik.setFieldValue('characteristics', { ...formik.values.characteristics, [characteristic]: true });
+      formik.setFieldValue('characteristicsRooms', { ...formik.values.characteristicsRooms, [characteristicRoom]: true });
       console.log('Estos son los valores despues de presionar las caracteristicas:', formik.values);
     };
 
   
-    const renderBotonCharacteristic = (nameCharacteristic, label) => (
+    const renderBotonCharacteristic = (nameCharacteristicRoom, label) => (
       <TouchableOpacity
-        key={nameCharacteristic}
+        key={nameCharacteristicRoom}
         style={[
           StylesFormPublication.characteristicButton,
-          characteristics[nameCharacteristic] ? StylesFormPublication.characteristicButtonSelected : null,
+          characteristicsRooms[nameCharacteristicRoom] ? StylesFormPublication.characteristicButtonSelected : null,
         ]}
         onPress={() => {
-          toggleCharacteristic(nameCharacteristic);
-          formik.setFieldValue('characteristics', { ...formik.values.characteristics, [nameCharacteristic]: !characteristics[nameCharacteristic] });
+          toggleCharacteristic(nameCharacteristicRoom);
+          formik.setFieldValue('characteristicsRooms', { ...formik.values.characteristicsRooms, [nameCharacteristicRoom]: !characteristicsRooms[nameCharacteristicRoom] });
         }}
       >
         <Text style={[
           StylesFormPublication.characteristicButtonText,
-          characteristics[nameCharacteristic] ? StylesFormPublication.characteristicButtonTextSelected : null,
+          characteristicsRooms[nameCharacteristicRoom] ? StylesFormPublication.characteristicButtonTextSelected : null,
         ]}>{label}</Text>
       </TouchableOpacity>
     );
@@ -67,27 +67,17 @@ export  function FormRoomL(props) {
           placeholder='Título de la habitación' 
           inputStyle={{ color: 'rgba(255, 255, 255, 0.77 )', marginLeft: 10, fontFamily: 'Montserrat_800ExtraBold'}} 
           inputContainerStyle={StylesFormPublication.input}
-          onChangeText={(text => formik.setFieldValue("title", text))}
-          errorMessage={formik.errors.title}
-        />
-
-        <Input 
-          placeholder='Descripción' 
-          multiline={true}
-          inputStyle={{ color: 'rgba(255, 255, 255, 0.77)', marginLeft: 10, fontFamily: 'Montserrat_800ExtraBold'}} 
-          inputContainerStyle={StylesFormPublication.input}
-          onChangeText={(text => formik.setFieldValue("description", text))}
-          errorMessage={formik.errors.description}
-          
+          onChangeText={(text => formik.setFieldValue("titleRoom", text))}
+          errorMessage={formik.errors.titleRoom}
         />
 
         <Input 
           placeholder='Precio de la habitacion' 
           inputStyle={{ color: 'rgba(255, 255, 255, 0.77)', marginLeft: 10, fontFamily: 'Montserrat_800ExtraBold'}} 
           inputContainerStyle={StylesFormPublication.input}
-          onChangeText={(text => formik.setFieldValue("value", text))}
-          errorMessage={formik.errors.value}
-          
+          onChangeText={(text => formik.setFieldValue("valueRoom", parseFloat(text)))}
+          errorMessage={formik.errors.valueRoom}
+          keyboardType="numeric"
         />
         <Text style={StylesFormPublication.formLabel}>Oprime las características de la habitación:</Text>
         {/* Botones de características */}
