@@ -11,7 +11,9 @@ sudo apt install -y curl git build-essential
 
 ### Configuración de variables de entorno para Node.js y NVM (Ejecutar una por una)
 export NODE_VERSION=18.18.1
+
 export NVM_DIR=/root/.nvm
+
 export PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
 
 ### Descarga e instala NVM
